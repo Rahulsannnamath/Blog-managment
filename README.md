@@ -2,6 +2,19 @@
 
 A full-stack Blog Post Management System built with React + Vite (frontend) and Node.js + Express + MongoDB (backend).
 
+---
+
+## 📸 Screenshots
+
+### 🗂️ Post List — Dashboard & Table View
+![Post List Page](docs/screenshots/screenshot-list.png)
+
+### ✍️ Create / Edit Post — Form View
+![Create Post Form](docs/screenshots/screenshot-form.png)
+
+### 👁️ View Post — Detail Page
+![Post Detail View](docs/screenshots/screenshot-view.png)
+
 ## 🚀 Tech Stack
 
 | Layer | Tech |
@@ -112,7 +125,14 @@ npm start     # production
 
 The API will be available at `http://localhost:5000`
 
-### 3. Start Frontend
+### 3. Seed the Database (Optional)
+
+```bash
+cd backend
+npm run seed   # inserts 13 sample posts across 8 categories
+```
+
+### 4. Start Frontend
 
 ```bash
 cd frontend
