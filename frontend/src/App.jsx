@@ -24,18 +24,18 @@ export default function App() {
         toastOptions={{
           duration: 4000,
           style: {
-            background: "hsl(222, 47%, 11%)",
-            color: "hsl(213, 31%, 91%)",
-            border: "1px solid hsl(222, 40%, 18%)",
+            background: "#ffffff",
+            color: "#1e293b",
+            border: "1px solid #e2e8f0",
             borderRadius: "0.625rem",
             fontSize: "0.875rem",
-            boxShadow: "0 8px 24px hsl(0 0% 0% / 0.4)",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.10)",
           },
           success: {
-            iconTheme: { primary: "hsl(142, 76%, 36%)", secondary: "white" },
+            iconTheme: { primary: "#22c55e", secondary: "white" },
           },
           error: {
-            iconTheme: { primary: "hsl(0, 72%, 51%)", secondary: "white" },
+            iconTheme: { primary: "#ef4444", secondary: "white" },
           },
         }}
       />

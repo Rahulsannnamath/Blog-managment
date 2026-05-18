@@ -18,12 +18,10 @@ export default function PostListPage() {
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [stats, setStats] = useState(null);
 
-  // Fetch stats for header cards
   useEffect(() => {
     postApi.getStats().then((r) => setStats(r.data.data)).catch(() => {});
   }, []);
 
-  // Re-fetch when filters change
   useEffect(() => {
     fetchPosts(filters);
   }, [filters, fetchPosts]);
@@ -50,28 +48,28 @@ export default function PostListPage() {
       {stats && (
         <div className="stats-grid" style={{ marginBottom: "1.5rem" }}>
           <StatCard
-            icon={<BookOpen size={20} />}
+            icon={<BookOpen size={18} />}
             label="Total Posts"
             value={stats.totalPosts}
-            color="hsl(var(--primary))"
+            color="#6366f1"
           />
           <StatCard
-            icon={<TrendingUp size={20} />}
+            icon={<TrendingUp size={18} />}
             label="Published"
             value={stats.byStatus?.published || 0}
-            color="hsl(var(--status-published))"
+            color="#16a34a"
           />
           <StatCard
-            icon={<FileText size={20} />}
+            icon={<FileText size={18} />}
             label="Drafts"
             value={stats.byStatus?.draft || 0}
-            color="hsl(var(--status-draft))"
+            color="#d97706"
           />
           <StatCard
-            icon={<BarChart2 size={20} />}
+            icon={<BarChart2 size={18} />}
             label="Archived"
             value={stats.byStatus?.archived || 0}
-            color="hsl(var(--status-archived))"
+            color="#64748b"
           />
         </div>
       )}
@@ -79,21 +77,21 @@ export default function PostListPage() {
       {/* Page header */}
       <div className="page-header">
         <div>
-          <h1 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: "0.25rem", letterSpacing: "-0.02em" }}>
-            Blog Posts
+          <h1 style={{ fontSize: "1.375rem", fontWeight: 800, marginBottom: "0.2rem", letterSpacing: "-0.02em", color: "hsl(var(--foreground))" }}>
+            Blog Post Manager
           </h1>
           <p style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))" }}>
-            Manage your blog posts — create, edit, and organize content.
+            Manage and organize your blog posts
           </p>
         </div>
-        <div style={{ display: "flex", gap: "0.625rem" }}>
+        <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
           <button
             id="export-csv-btn"
             className="btn-ghost"
             onClick={handleExport}
             title="Export posts to CSV"
           >
-            <Download size={15} />
+            <Download size={14} />
             Export CSV
           </button>
           <button
@@ -101,8 +99,8 @@ export default function PostListPage() {
             className="btn-primary"
             onClick={() => navigate("/posts/new")}
           >
-            <PenSquare size={15} />
-            New Post
+            <PenSquare size={14} />
+            + Add Post
           </button>
         </div>
       </div>
@@ -111,19 +109,11 @@ export default function PostListPage() {
       <div className="glass-card" style={{ overflow: "hidden" }}>
         {/* Toolbar */}
         <div className="toolbar">
-          <PostFilters
-            filters={filters}
-            onChange={setFilters}
-            onReset={handleReset}
-          />
+          <PostFilters filters={filters} onChange={setFilters} onReset={handleReset} />
         </div>
 
         {/* Table */}
-        <PostTable
-          posts={posts}
-          loading={loading}
-          onDelete={(post) => setDeleteTarget(post)}
-        />
+        <PostTable posts={posts} loading={loading} onDelete={(post) => setDeleteTarget(post)} />
 
         {/* Pagination */}
         <Pagination
@@ -152,14 +142,13 @@ export default function PostListPage() {
 function StatCard({ icon, label, value, color }) {
   return (
     <div className="stat-card">
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.75rem" }}>
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: "0.875rem" }}>
         <div
           style={{
-            width: 40,
-            height: 40,
+            width: 38, height: 38,
             borderRadius: 10,
-            background: `${color}18`,
-            border: `1px solid ${color}30`,
+            background: `${color}14`,
+            border: `1px solid ${color}28`,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -169,10 +158,10 @@ function StatCard({ icon, label, value, color }) {
           {icon}
         </div>
       </div>
-      <div style={{ fontSize: "1.875rem", fontWeight: 800, lineHeight: 1, marginBottom: "0.375rem", letterSpacing: "-0.03em" }}>
+      <div style={{ fontSize: "1.75rem", fontWeight: 800, lineHeight: 1, marginBottom: "0.3rem", letterSpacing: "-0.03em", color: "hsl(var(--foreground))" }}>
         {value}
       </div>
-      <div style={{ fontSize: "0.8125rem", color: "hsl(var(--muted-foreground))", fontWeight: 500 }}>
+      <div style={{ fontSize: "0.8rem", color: "hsl(var(--muted-foreground))", fontWeight: 500 }}>
         {label}
       </div>
     </div>

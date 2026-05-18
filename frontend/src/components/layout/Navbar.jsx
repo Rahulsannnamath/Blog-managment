@@ -26,7 +26,7 @@ export default function Navbar() {
             aria-label="Go to home"
           >
             <div className="brand-icon">
-              <Rss size={18} />
+              <Rss size={16} />
             </div>
             <span className="brand-text">
               Blog<span className="brand-accent">Manager</span>
@@ -41,8 +41,8 @@ export default function Navbar() {
                 to={to}
                 className={`nav-link ${isActive(to) ? "nav-link-active" : ""}`}
               >
-                <Icon size={15} />
-                {label}
+                <Icon size={14} />
+                <span>{label}</span>
               </Link>
             ))}
           </div>
@@ -54,11 +54,9 @@ export default function Navbar() {
           position: sticky;
           top: 0;
           z-index: 40;
-          background: hsl(222, 47%, 7% / 0.85);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
+          background: #ffffff;
           border-bottom: 1px solid hsl(var(--border));
-          box-shadow: 0 1px 0 hsl(var(--primary) / 0.05);
+          box-shadow: 0 1px 3px hsl(0 0% 0% / 0.05);
         }
         .navbar-inner {
           display: flex;
@@ -70,7 +68,7 @@ export default function Navbar() {
         .brand {
           display: flex;
           align-items: center;
-          gap: 0.625rem;
+          gap: 0.575rem;
           background: none;
           border: none;
           cursor: pointer;
@@ -78,18 +76,19 @@ export default function Navbar() {
           text-decoration: none;
         }
         .brand-icon {
-          width: 34px;
-          height: 34px;
-          border-radius: 10px;
+          width: 32px;
+          height: 32px;
+          border-radius: 9px;
           background: var(--gradient-primary);
           display: flex;
           align-items: center;
           justify-content: center;
           color: white;
-          box-shadow: 0 4px 12px hsl(var(--primary) / 0.4);
+          box-shadow: 0 2px 8px hsl(var(--primary) / 0.3);
+          flex-shrink: 0;
         }
         .brand-text {
-          font-size: 1.125rem;
+          font-size: 1.05rem;
           font-weight: 800;
           color: hsl(var(--foreground));
           letter-spacing: -0.02em;
@@ -100,19 +99,20 @@ export default function Navbar() {
         .nav-links {
           display: flex;
           align-items: center;
-          gap: 0.25rem;
+          gap: 0.2rem;
         }
         .nav-link {
           display: flex;
           align-items: center;
-          gap: 0.375rem;
-          padding: 0.5rem 0.875rem;
+          gap: 0.35rem;
+          padding: 0.45rem 0.8rem;
           border-radius: calc(var(--radius) - 2px);
           font-size: 0.875rem;
           font-weight: 500;
           color: hsl(var(--muted-foreground));
           text-decoration: none;
-          transition: all 0.2s ease;
+          transition: all 0.15s ease;
+          white-space: nowrap;
         }
         .nav-link:hover {
           color: hsl(var(--foreground));
@@ -120,16 +120,18 @@ export default function Navbar() {
         }
         .nav-link-active {
           color: hsl(var(--primary));
-          background: hsl(var(--primary) / 0.1);
+          background: hsl(var(--primary) / 0.08);
+          font-weight: 600;
         }
         .nav-link-active:hover {
-          background: hsl(var(--primary) / 0.15);
+          background: hsl(var(--primary) / 0.12);
           color: hsl(var(--primary));
         }
 
         @media (max-width: 480px) {
           .nav-link span { display: none; }
-          .brand-text { font-size: 1rem; }
+          .nav-link { padding: 0.45rem 0.6rem; }
+          .brand-text { font-size: 0.95rem; }
         }
       `}</style>
     </header>

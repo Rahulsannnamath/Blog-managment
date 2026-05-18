@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import {
-  Eye, Pencil, Trash2, Clock, TrendingUp, FileText
-} from "lucide-react";
+import { Eye, Pencil, Trash2, Clock, TrendingUp, FileText } from "lucide-react";
 import PostStatusBadge from "./PostStatusBadge";
 import { formatDate, truncate } from "@/utils/helpers";
 
@@ -9,8 +7,8 @@ function SkeletonRow() {
   return (
     <tr>
       {[...Array(7)].map((_, i) => (
-        <td key={i} style={{ padding: "1rem" }}>
-          <div className="skeleton" style={{ height: 16, borderRadius: 6 }} />
+        <td key={i} style={{ padding: "0.9rem 1rem" }}>
+          <div className="skeleton" style={{ height: 14, borderRadius: 4 }} />
         </td>
       ))}
     </tr>
@@ -23,11 +21,11 @@ export default function PostTable({ posts, loading, onDelete }) {
   if (!loading && posts.length === 0) {
     return (
       <div className="empty-state">
-        <FileText size={48} style={{ opacity: 0.2, marginBottom: "1rem" }} />
-        <h3 style={{ fontSize: "1.125rem", fontWeight: 600, marginBottom: "0.5rem" }}>
+        <FileText size={44} style={{ opacity: 0.18, marginBottom: "1rem", color: "hsl(var(--muted-foreground))" }} />
+        <h3 style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.4rem", color: "hsl(var(--foreground))" }}>
           No posts found
         </h3>
-        <p style={{ fontSize: "0.875rem" }}>
+        <p style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))" }}>
           Try adjusting your filters or create a new post.
         </p>
       </div>
@@ -45,12 +43,12 @@ export default function PostTable({ posts, loading, onDelete }) {
             <th>Status</th>
             <th>
               <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                <Eye size={12} /> Views
+                <TrendingUp size={11} /> Views
               </span>
             </th>
             <th>
               <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                <Clock size={12} /> Created
+                <Clock size={11} /> Created
               </span>
             </th>
             <th style={{ textAlign: "center" }}>Actions</th>
@@ -78,7 +76,7 @@ export default function PostTable({ posts, loading, onDelete }) {
                     </div>
                   </td>
                   <td style={{ whiteSpace: "nowrap" }}>
-                    <span style={{ fontWeight: 500 }}>{post.author}</span>
+                    <span style={{ fontWeight: 500, fontSize: "0.875rem" }}>{post.author}</span>
                   </td>
                   <td>
                     <span className="badge badge-category">{post.category}</span>
@@ -87,20 +85,12 @@ export default function PostTable({ posts, loading, onDelete }) {
                     <PostStatusBadge status={post.status} />
                   </td>
                   <td>
-                    <span
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 4,
-                        color: "hsl(var(--muted-foreground))",
-                        fontSize: "0.8125rem",
-                      }}
-                    >
+                    <span className="views-cell">
                       <TrendingUp size={12} />
                       {post.views?.toLocaleString() || 0}
                     </span>
                   </td>
-                  <td style={{ color: "hsl(var(--muted-foreground))", fontSize: "0.8125rem", whiteSpace: "nowrap" }}>
+                  <td className="date-cell">
                     {formatDate(post.createdAt)}
                   </td>
                   <td>
@@ -111,7 +101,7 @@ export default function PostTable({ posts, loading, onDelete }) {
                         onClick={() => navigate(`/posts/${post._id}`)}
                         title="View post"
                       >
-                        <Eye size={14} />
+                        <Eye size={13} />
                       </button>
                       <button
                         id={`edit-post-${post._id}`}
@@ -119,7 +109,7 @@ export default function PostTable({ posts, loading, onDelete }) {
                         onClick={() => navigate(`/posts/${post._id}/edit`)}
                         title="Edit post"
                       >
-                        <Pencil size={14} />
+                        <Pencil size={13} />
                       </button>
                       <button
                         id={`delete-post-${post._id}`}
@@ -127,7 +117,7 @@ export default function PostTable({ posts, loading, onDelete }) {
                         onClick={() => onDelete(post)}
                         title="Delete post"
                       >
-                        <Trash2 size={14} />
+                        <Trash2 size={13} />
                       </button>
                     </div>
                   </td>
@@ -142,57 +132,81 @@ export default function PostTable({ posts, loading, onDelete }) {
           display: flex;
           flex-direction: column;
           gap: 2px;
-          min-width: 200px;
-          max-width: 300px;
+          min-width: 180px;
+          max-width: 280px;
         }
         .post-title-link {
           font-weight: 600;
           color: hsl(var(--foreground));
           cursor: pointer;
-          transition: color 0.15s;
+          transition: color 0.14s;
           line-height: 1.4;
+          font-size: 0.875rem;
         }
         .post-title-link:hover { color: hsl(var(--primary)); }
         .read-time {
           display: flex;
           align-items: center;
           gap: 3px;
-          font-size: 0.7rem;
+          font-size: 0.68rem;
           color: hsl(var(--muted-foreground));
+        }
+        .views-cell {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          color: hsl(var(--muted-foreground));
+          font-size: 0.8125rem;
+        }
+        .date-cell {
+          color: hsl(var(--muted-foreground));
+          font-size: 0.8125rem;
+          white-space: nowrap;
         }
         .action-buttons {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 0.375rem;
+          gap: 0.3rem;
         }
         .action-btn {
           width: 30px;
           height: 30px;
-          border-radius: 8px;
+          border-radius: 7px;
           border: 1px solid hsl(var(--border));
-          background: hsl(var(--secondary));
+          background: white;
           color: hsl(var(--muted-foreground));
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: all 0.15s ease;
+          transition: all 0.14s ease;
+          box-shadow: 0 1px 2px hsl(0 0% 0% / 0.05);
         }
         .action-view:hover {
-          border-color: hsl(250, 84%, 67% / 0.4);
-          background: hsl(250, 84%, 67% / 0.1);
+          border-color: hsl(var(--primary) / 0.35);
+          background: hsl(var(--primary) / 0.07);
           color: hsl(var(--primary));
         }
         .action-edit:hover {
-          border-color: hsl(38, 92%, 50% / 0.4);
-          background: hsl(38, 92%, 50% / 0.1);
-          color: hsl(38, 92%, 50%);
+          border-color: hsl(38 92% 46% / 0.35);
+          background: hsl(38 92% 46% / 0.08);
+          color: hsl(38 80% 36%);
         }
         .action-delete:hover {
-          border-color: hsl(var(--destructive) / 0.4);
-          background: hsl(var(--destructive) / 0.1);
+          border-color: hsl(var(--destructive) / 0.35);
+          background: hsl(var(--destructive) / 0.07);
           color: hsl(var(--destructive));
+        }
+
+        @media (max-width: 768px) {
+          .data-table th:nth-child(5),
+          .data-table td:nth-child(5) { display: none; }
+        }
+        @media (max-width: 600px) {
+          .data-table th:nth-child(3),
+          .data-table td:nth-child(3) { display: none; }
+          .post-title-cell { min-width: 140px; max-width: 200px; }
         }
       `}</style>
     </div>
