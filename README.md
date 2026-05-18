@@ -6,14 +6,24 @@ A full-stack Blog Post Management System built with React + Vite (frontend) and 
 
 ## 📸 Screenshots
 
-### 🗂️ Post List — Dashboard & Table View
-![Post List Page](docs/screenshots/screenshot-list.png)
+### 🗂️ Screen 1 — Post List (Dashboard & Table)
+> Stats cards showing total / published / draft / archived counts, a filterable + searchable table with pagination, and Export CSV + New Post actions.
 
-### ✍️ Create / Edit Post — Form View
-![Create Post Form](docs/screenshots/screenshot-form.png)
+![Post List Page](docs/screenshots/screenshot-form.png)
 
-### 👁️ View Post — Detail Page
-![Post Detail View](docs/screenshots/screenshot-view.png)
+---
+
+### ✍️ Screen 2 — Create / Edit Post (Form)
+> Validated form with Title, Author, Category, Status, Tags, Cover Image URL, Excerpt, and Content fields. Supports both Add and Edit modes.
+
+![Create Post Form](docs/screenshots/screenshot-view.png)
+
+---
+
+### 👁️ Screen 3 — View Post (Detail Page)
+> Full article view with cover image, author avatar, read time, views, likes, tags, and a sidebar with post metadata and quick actions.
+
+![Post Detail View](docs/screenshots/screenshot-list.png)
 
 ## 🚀 Tech Stack
 
