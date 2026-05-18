@@ -130,9 +130,21 @@ export default function Pagination({ pagination, onPageChange }) {
           user-select: none;
           font-size: 0.875rem;
         }
-        @media (max-width: 480px) {
+        @media (max-width: 560px) {
+          .pagination-bar {
+            flex-direction: column;
+            align-items: center;
+            gap: 0.625rem;
+            padding: 0.75rem 1rem;
+          }
           .pagination-info { font-size: 0.75rem; }
-          .page-btn { min-width: 28px; height: 28px; font-size: 0.75rem; }
+          .page-btn { min-width: 30px; height: 30px; font-size: 0.8rem; }
+        }
+        @media (max-width: 400px) {
+          .pagination-bar { padding: 0.625rem 0.75rem; }
+          .page-btn { min-width: 28px; height: 28px; font-size: 0.75rem; padding: 0 0.3rem; }
+          .pagination-controls { gap: 0.2rem; }
+          .page-ellipsis { padding: 0 0.1rem; }
         }
       `}</style>
     </div>

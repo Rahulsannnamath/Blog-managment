@@ -132,7 +132,7 @@ export default function PostTable({ posts, loading, onDelete }) {
           display: flex;
           flex-direction: column;
           gap: 2px;
-          min-width: 180px;
+          min-width: 160px;
           max-width: 280px;
         }
         .post-title-link {
@@ -182,6 +182,7 @@ export default function PostTable({ posts, loading, onDelete }) {
           justify-content: center;
           transition: all 0.14s ease;
           box-shadow: 0 1px 2px hsl(0 0% 0% / 0.05);
+          flex-shrink: 0;
         }
         .action-view:hover {
           border-color: hsl(var(--primary) / 0.35);
@@ -199,14 +200,38 @@ export default function PostTable({ posts, loading, onDelete }) {
           color: hsl(var(--destructive));
         }
 
-        @media (max-width: 768px) {
+        /* ── lg: hide Views ── */
+        @media (max-width: 900px) {
           .data-table th:nth-child(5),
           .data-table td:nth-child(5) { display: none; }
         }
-        @media (max-width: 600px) {
+
+        /* ── md: hide Category + date cell font shrinks ── */
+        @media (max-width: 720px) {
           .data-table th:nth-child(3),
           .data-table td:nth-child(3) { display: none; }
-          .post-title-cell { min-width: 140px; max-width: 200px; }
+          .post-title-cell { min-width: 130px; max-width: 220px; }
+          .data-table th, .data-table td { padding: 0.75rem 0.75rem; }
+        }
+
+        /* ── sm: hide Created date ── */
+        @media (max-width: 560px) {
+          .data-table th:nth-child(6),
+          .data-table td:nth-child(6) { display: none; }
+          .post-title-cell { min-width: 110px; max-width: 180px; }
+          .read-time { display: none; }
+          .action-btn { width: 28px; height: 28px; }
+          .data-table th, .data-table td { padding: 0.65rem 0.6rem; }
+        }
+
+        /* ── xs: hide Author too, compact everything ── */
+        @media (max-width: 400px) {
+          .data-table th:nth-child(2),
+          .data-table td:nth-child(2) { display: none; }
+          .post-title-cell { min-width: 90px; max-width: 150px; }
+          .post-title-link { font-size: 0.8125rem; }
+          .data-table th, .data-table td { padding: 0.6rem 0.5rem; }
+          .action-btn { width: 26px; height: 26px; border-radius: 6px; }
         }
       `}</style>
     </div>

@@ -70,7 +70,7 @@ export default function PostViewPage() {
           <ArrowLeft size={15} />
           Back
         </button>
-        <div style={{ display: "flex", gap: "0.5rem" }}>
+        <div className="view-nav-actions">
           <button
             id="share-post-btn"
             className="btn-ghost"
@@ -252,6 +252,11 @@ export default function PostViewPage() {
           flex-wrap: wrap;
           gap: 0.75rem;
         }
+        .view-nav-actions {
+          display: flex;
+          gap: 0.5rem;
+          flex-wrap: wrap;
+        }
         .view-layout {
           display: grid;
           grid-template-columns: 1fr 300px;
@@ -263,6 +268,7 @@ export default function PostViewPage() {
           border: 1px solid hsl(var(--border));
           border-radius: var(--radius);
           overflow: hidden;
+          min-width: 0;
         }
         .cover-img-wrapper {
           width: 100%;
@@ -283,6 +289,7 @@ export default function PostViewPage() {
           align-items: center;
           gap: 0.75rem;
           margin-bottom: 1rem;
+          flex-wrap: wrap;
         }
         .article-title {
           font-size: 1.875rem;
@@ -374,16 +381,57 @@ export default function PostViewPage() {
           flex-direction: column;
           gap: 0.875rem;
         }
+
+        /* ── xl (≤1100px): shrink sidebar ── */
+        @media (max-width: 1100px) {
+          .view-layout { grid-template-columns: 1fr 260px; gap: 1.25rem; }
+        }
+
+        /* ── lg (≤900px): sidebar goes below, visible ── */
         @media (max-width: 900px) {
           .view-layout { grid-template-columns: 1fr; }
-          .view-sidebar { order: -1; display: none; }
+          .view-sidebar { order: 1; }
           .article-title { font-size: 1.5rem; }
-          .article-header, .article-body { padding-left: 1.25rem; padding-right: 1.25rem; }
-          .article-divider { margin: 0 1.25rem; }
-          .article-tags { padding: 1rem 1.25rem; }
+          .article-header, .article-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+          .article-divider { margin: 0 1.5rem; }
+          .article-tags { padding: 1rem 1.5rem; }
         }
+
+        /* ── md (≤640px) ── */
+        @media (max-width: 640px) {
+          .view-nav { margin-bottom: 1rem; }
+          .article-title { font-size: 1.3rem; }
+          .article-header, .article-body { padding-left: 1.125rem; padding-right: 1.125rem; }
+          .article-divider { margin: 0 1.125rem; }
+          .article-tags { padding: 0.875rem 1.125rem 1.25rem; }
+          .article-excerpt { font-size: 0.9375rem; }
+          .article-body { font-size: 0.9375rem; }
+          .sidebar-card { padding: 1rem; }
+        }
+
+        /* ── sm (≤480px) ── */
         @media (max-width: 480px) {
+          .view-nav { flex-direction: column; align-items: flex-start; }
+          .view-nav-actions { width: 100%; }
+          .view-nav-actions button { flex: 1; justify-content: center; }
+          .article-title { font-size: 1.175rem; }
+          .article-header { padding: 1.125rem 1rem 1rem; }
+          .article-body { padding: 1rem; font-size: 0.9rem; }
+          .article-divider { margin: 0 1rem; }
+          .article-tags { padding: 0.75rem 1rem 1.125rem; }
           .byline-stats { display: none; }
+          .author-avatar { width: 34px; height: 34px; font-size: 0.875rem; }
+        }
+
+        /* ── xs (≤360px) ── */
+        @media (max-width: 360px) {
+          .article-title { font-size: 1.075rem; }
+          .article-header { padding: 0.875rem 0.75rem 0.875rem; }
+          .article-body { padding: 0.875rem 0.75rem; font-size: 0.875rem; }
+          .article-divider { margin: 0 0.75rem; }
+          .article-tags { padding: 0.625rem 0.75rem 1rem; }
+          .sidebar-card { padding: 0.875rem; }
+          .cover-img-wrapper { aspect-ratio: 16/6; }
         }
       `}</style>
     </PageWrapper>

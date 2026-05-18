@@ -308,10 +308,29 @@ export default function PostForm({ post }) {
         .spin { animation: spin 1s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
+        /* ── md (≤640px) ── */
         @media (max-width: 640px) {
           .form-grid-2 { grid-template-columns: 1fr !important; }
+          .form-card { padding: 1.25rem !important; }
           .form-actions { justify-content: stretch; }
           .form-actions button { flex: 1; justify-content: center; }
+          .img-preview { max-height: 180px; }
+        }
+
+        /* ── sm (≤480px) ── */
+        @media (max-width: 480px) {
+          .form-card { padding: 1rem !important; }
+          .form-card > * + * { margin-top: 0.875rem; }
+          .form-actions { margin-top: 1.125rem; gap: 0.5rem; }
+          textarea.input-field { min-height: 80px; }
+        }
+
+        /* ── xs (≤360px) ── */
+        @media (max-width: 360px) {
+          .form-card { padding: 0.875rem !important; }
+          .form-card > * + * { margin-top: 0.75rem; }
+          .form-section-label { font-size: 0.65rem; }
+          .img-preview { max-height: 140px; }
         }
       `}</style>
     </form>

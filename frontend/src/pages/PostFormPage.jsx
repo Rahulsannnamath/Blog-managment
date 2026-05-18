@@ -41,7 +41,7 @@ export default function PostFormPage() {
 
       {/* Page title */}
       <div style={{ marginBottom: "1.5rem" }}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 800, letterSpacing: "-0.02em", marginBottom: "0.25rem" }}>
+        <h1 style={{ fontSize: "clamp(1.25rem, 4vw, 1.5rem)", fontWeight: 800, letterSpacing: "-0.02em", marginBottom: "0.25rem" }}>
           {isEdit ? "Edit Post" : "Create New Post"}
         </h1>
         <p style={{ fontSize: "0.875rem", color: "hsl(var(--muted-foreground))" }}>

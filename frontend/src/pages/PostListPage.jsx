@@ -84,7 +84,7 @@ export default function PostListPage() {
             Manage and organize your blog posts
           </p>
         </div>
-        <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap", alignItems: "center" }}>
           <button
             id="export-csv-btn"
             className="btn-ghost"

@@ -75,10 +75,11 @@ export default function PostFilters({ filters, onChange, onReset }) {
           flex-wrap: wrap;
           gap: 0.625rem;
           flex: 1;
+          width: 100%;
         }
         .search-wrapper {
           position: relative;
-          flex: 1;
+          flex: 2;
           min-width: 180px;
         }
         .search-icon {
@@ -111,13 +112,15 @@ export default function PostFilters({ filters, onChange, onReset }) {
         .search-clear:hover { color: hsl(var(--foreground)); }
         .select-wrapper {
           position: relative;
-          min-width: 140px;
+          flex: 1;
+          min-width: 130px;
         }
         .select-filter {
           padding-right: 2rem !important;
           cursor: pointer;
           appearance: none;
           background-image: none !important;
+          width: 100%;
         }
         .select-icon {
           position: absolute;
@@ -131,10 +134,26 @@ export default function PostFilters({ filters, onChange, onReset }) {
           padding: 0.45rem 0.8rem !important;
           font-size: 0.8rem !important;
           white-space: nowrap;
+          flex-shrink: 0;
         }
+
+        /* ── md (≤640px): toolbar already stacks via index.css, make filters full width ── */
         @media (max-width: 640px) {
-          .search-wrapper { min-width: 100%; }
-          .select-wrapper { flex: 1; min-width: 120px; }
+          .filters-bar { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+          .search-wrapper { flex: unset; min-width: 100%; width: 100%; }
+          .select-wrapper { flex: unset; min-width: 0; width: 100%; }
+          .reset-btn { width: 100%; justify-content: center !important; }
+        }
+
+        /* ── sm (≤480px) ── */
+        @media (max-width: 480px) {
+          .search-input, .select-filter { font-size: 0.8125rem; }
+        }
+
+        /* ── xs (≤360px) ── */
+        @media (max-width: 360px) {
+          .search-input, .select-filter { font-size: 0.775rem; padding: 0.45rem 0.75rem; }
+          .search-input { padding-left: 1.9rem !important; }
         }
       `}</style>
     </div>
